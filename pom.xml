@@ -16,7 +16,8 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>nl.knaw.dans.shared</groupId>
     <artifactId>dans-mvn-base</artifactId>
@@ -38,10 +39,13 @@
         <artifactory-maven-plugin.repoKey>libs-release-local</artifactory-maven-plugin.repoKey>
         <artifactory-maven-plugin.snapshotRepoKey>libs-snapshot-local</artifactory-maven-plugin.snapshotRepoKey>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <!-- wrapped system property maven.build.timestamp in own property as work-around for
          https://issues.apache.org/jira/browse/MRESOURCES-99. This should actually be fixed since
          Maven 3.0.0, so prefer the use of maven.build.timestamp over this custom property.
          -->
+        <timestamp>${maven.build.timestamp}</timestamp>
+
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
         <license-maven-plugin.version>3.0</license-maven-plugin.version>
 
