@@ -16,7 +16,8 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>nl.knaw.dans.shared</groupId>
     <artifactId>dans-mvn-base</artifactId>
@@ -90,7 +91,7 @@
                     <pushChanges>true</pushChanges>
                 </configuration>
             </plugin>
-             <plugin>
+            <plugin>
                 <!--
                     There's a bit of a chicken-and-egg problem here. We cannot use the use the apache2.txt from
                     dans-mvn-build-resources here, as this project depends on dans-mvn-base. To avoid the circular
