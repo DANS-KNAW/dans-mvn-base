@@ -33,10 +33,6 @@
     </description>
     <inceptionYear>2018</inceptionYear>
     <properties>
-        <artifactory-maven-plugin.version>2.6.1</artifactory-maven-plugin.version>
-        <artifactory-maven-plugin.contextUrl>http://maven-repo.dans.knaw.nl</artifactory-maven-plugin.contextUrl>
-        <artifactory-maven-plugin.repoKey>libs-release-local</artifactory-maven-plugin.repoKey>
-        <artifactory-maven-plugin.snapshotRepoKey>libs-snapshot-local</artifactory-maven-plugin.snapshotRepoKey>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- wrapped system property maven.build.timestamp in own property as work-around for
