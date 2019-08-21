@@ -23,10 +23,6 @@
     <name>DANS Maven Project Basic Settings</name>
     <version>4.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <scm>
-        <developerConnection>scm:git:https://github.com/DANS-KNAW/${project.artifactId}</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
     <description>
         Parent project for all DANS Maven-based projects.
     </description>
@@ -46,15 +42,21 @@
         <!-- Releasing to the DANS Maven repository -->
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
+        <nexus-snapshots-repo>http://maven-repo.dans.knaw.nl/repository/maven-snapshots/</nexus-snapshots-repo>
+        <nexus-releases-repo>http://maven-repo.dans.knaw.nl/repository/maven-releases/</nexus-releases-repo>
     </properties>
+    <scm>
+        <developerConnection>scm:git:https://github.com/DANS-KNAW/${project.artifactId}</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
     <distributionManagement>
         <snapshotRepository>
             <id>nexus-snapshots</id>
-            <url>http://dnexus.dans.knaw.nl/repository/maven-snapshots/</url>
+            <url>${nexus-snapshots-repo}</url>
         </snapshotRepository>
         <repository>
             <id>nexus-releases</id>
-            <url>http://dnexus.dans.knaw.nl/repository/maven-releases/</url>
+            <url>${nexus-releases-repo}</url>
         </repository>
     </distributionManagement>
     <pluginRepositories>
