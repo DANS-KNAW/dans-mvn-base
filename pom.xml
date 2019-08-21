@@ -16,12 +16,13 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>nl.knaw.dans.shared</groupId>
     <artifactId>dans-mvn-base</artifactId>
     <name>DANS Maven Project Basic Settings</name>
-    <version>4.0.1-SNAPSHOT</version>
+    <version>4.0.0</version>
     <packaging>pom</packaging>
     <description>
         Parent project for all DANS Maven-based projects.
@@ -48,6 +49,7 @@
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>
+        <!-- Credentials for server are defined in ~/.m2/settings.xml -->
         <snapshotRepository>
             <id>nexus-snapshots</id>
             <url>http://maven-repo.dans.knaw.nl/repository/maven-snapshots/</url>
@@ -75,18 +77,20 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>3.0.0-M1</version>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
             </plugin>
             <plugin>
+                <!--
+                We rely on the maven-deploy-plugin that is included by default.
+                You can use it on its own to deploy a snapshot, but maven-release-plugin
+                also uses it to perform the deploy of the release when calling
+                mvn release:perform.
+                -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>${maven-release-plugin.version}</version>
                 <configuration>
                     <tagNameFormat>v@{project.version}</tagNameFormat>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <releaseProfiles>releases</releaseProfiles>
                     <pushChanges>true</pushChanges>
                 </configuration>
             </plugin>
@@ -124,34 +128,18 @@
 
     <profiles>
         <profile>
-            <id>releases</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>${nexus-staging-maven-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>default-deploy</id>
-                                <phase>deploy</phase>
-                                <goals>
-                                    <goal>deploy</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <serverId>nexus-releases</serverId>
-                            <nexusUrl>http://localhost:8081/nexus/</nexusUrl>
-                            <skipStaging>true</skipStaging>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>local-deploy-test</id>
+            <!--
+            To locally test the deployment procedure activate this profile, e.g.,
+
+            mvn -Plocal-deploy-test deploy
+
+            The artifacts will be deployed to dnexus.dans.knaw.nl. This domain name
+            should be configured in your local /etc/hosts to point to the VM
+            running the Nexus server.
+            -->
             <distributionManagement>
+                <!-- Credentials for server are defined in ~/.m2/settings.xml -->
                 <snapshotRepository>
                     <id>nexus-snapshots</id>
                     <url>http://dnexus.dans.knaw.nl/repository/maven-snapshots/</url>
