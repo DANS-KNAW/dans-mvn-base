@@ -43,6 +43,11 @@
         <!-- Releasing to the DANS Maven repository -->
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
+
+        <snapshot-repository>http://maven-repo.dans.knaw.nl/repository/maven-snapshots</snapshot-repository>
+        <release-repository>http://maven-repo.dans.knaw.nl/repository/maven-releases</release-repository>
+        <snapshot-repository-test>http://dnexus.dans.knaw.nl/repository/maven-snapshots</snapshot-repository-test>
+        <release-repository-test>http://dnexus.dans.knaw.nl/repository/maven-releases</release-repository-test>
     </properties>
     <scm>
         <developerConnection>scm:git:https://github.com/DANS-KNAW/${project.artifactId}</developerConnection>
@@ -52,11 +57,13 @@
         <!-- Credentials for server are defined in ~/.m2/settings.xml -->
         <snapshotRepository>
             <id>nexus-snapshots</id>
-            <url>http://maven-repo.dans.knaw.nl/repository/maven-snapshots/</url>
+            <!-- Final slash is important for Nexus ! -->
+            <url>${snapshot-repository}/</url>
         </snapshotRepository>
         <repository>
             <id>nexus-releases</id>
-            <url>http://maven-repo.dans.knaw.nl/repository/maven-releases/</url>
+            <!-- Final slash is important for Nexus ! -->
+            <url>${release-repository}/</url>
         </repository>
     </distributionManagement>
     <pluginRepositories>
@@ -139,14 +146,13 @@
             running the Nexus server.
             -->
             <distributionManagement>
-                <!-- Credentials for server are defined in ~/.m2/settings.xml -->
                 <snapshotRepository>
                     <id>nexus-snapshots</id>
-                    <url>http://dnexus.dans.knaw.nl/repository/maven-snapshots/</url>
+                    <url>${snapshot-repository-test}/</url>
                 </snapshotRepository>
                 <repository>
                     <id>nexus-releases</id>
-                    <url>http://dnexus.dans.knaw.nl/repository/maven-releases/</url>
+                    <url>${release-repository-test}/</url>
                 </repository>
             </distributionManagement>
         </profile>
