@@ -42,7 +42,6 @@
 
         <!-- Releasing to the DANS Maven repository -->
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-        <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
 
         <snapshot-repository>http://maven-repo.dans.knaw.nl/repository/maven-snapshots</snapshot-repository>
         <release-repository>http://maven-repo.dans.knaw.nl/repository/maven-releases</release-repository>
