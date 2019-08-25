@@ -131,29 +131,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>local-deploy-test</id>
-            <!--
-            To locally test the deployment procedure activate this profile, e.g.,
-
-            mvn -Plocal-deploy-test deploy
-
-            The artifacts will be deployed to dnexus.dans.knaw.nl. This domain name
-            should be configured in your local /etc/hosts to point to the VM
-            running the Nexus server.
-            -->
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>nexus-snapshots</id>
-                    <url>${snapshot-repository-test}/</url>
-                </snapshotRepository>
-                <repository>
-                    <id>nexus-releases</id>
-                    <url>${release-repository-test}/</url>
-                </repository>
-            </distributionManagement>
-        </profile>
-    </profiles>
 </project>
